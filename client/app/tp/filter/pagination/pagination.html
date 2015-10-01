@@ -1,0 +1,32 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container" ng-controller="paginationController as main">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Fruit basket</h4>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Yums</th>
+                        </tr>
+                        </thead>
+                        <tr ng-repeat="fruit in main.fruits | limitTo : main.limit">
+                            <td ng-bind="fruit.name"></td>
+                            <td ng-bind="fruit.price | currency"></td>
+                            <td ng-bind="'yum' | doubler : fruit.yums"></td>
+                        </tr>
+                    </table>
+                    <div class="alert alert-warning" ng-show="main.limit < main.fruits.length">
+                        Only showing {{main.limit}} fruits of {{main.fruits.length}}!
+                        <a ng-click="main.limit = main.fruits.length">Show more...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

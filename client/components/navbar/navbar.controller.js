@@ -43,6 +43,17 @@ angular.module('formationAngularJsApp')
 
     $scope.isCollapsed = false;
 
+    Array.prototype.oneOnTwo = function(item) {
+      console.log('test', item);
+    };
+
+    var tmp =
+    {
+      tmp: ['totot', 'tat']
+    };
+    console.log('test', tmp)
+
+
     $scope.isActive = function(route) {
       return route === $location.path();
     };

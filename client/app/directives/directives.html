@@ -1,0 +1,22 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container" ng-controller="directivesController as main">
+
+    <div very-simple-directive></div>
+
+    <div simple-directive items="main.fruits"></div>
+
+    <div binding-directive></div>
+
+    <div transclusion-directive>
+        <div simple-directive items="main.fruits"></div>
+    </div>
+
+    <div transclusion-function-directive title="Transcluded">
+        <span ng-bind="title"></span>
+    </div>
+
+    <div text-displayer text-add="ploum"></div>
+
+    <div compile-directive></div>
+
+</div>

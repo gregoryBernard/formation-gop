@@ -1,0 +1,128 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+
+    <h1>Internationalization</h1>
+
+    <div class="row">
+        <div class="col-lg-12" ng-controller="i18nCtl">
+            <h2>App locale : {{currentLocale}}</h2>
+            <hr />
+            <h2>Formatage numérique</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Format brut</th>
+                        <th>Filtre utilisé</th>
+                        <th>Résultat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{myNumber}}</td>
+                        <td>myNumber | number</td>
+                        <td>{{myNumber | number}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{myNumber}}</td>
+                        <td>myNumber | number:0</td>
+                        <td>{{myNumber | number:0}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{myNumber}}</td>
+                        <td>-myNumber | number:2</td>
+                        <td>{{-myNumber | number:2}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h2>Formatage Date/Heure</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Format brut</th>
+                        <th>Filtre utilisé</th>
+                        <th>Résultat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{myDate}}</td>
+                        <td>myDate | date:'fullDate'</td>
+                        <td>{{myDate | date:'fullDate'}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{myDate}}</td>
+                        <td>myDate | date:'short'</td>
+                        <td>{{myDate | date:'short'}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{myDate}}</td>
+                        <td>myDate | date:'shortDate'</td>
+                        <td>{{myDate | date:'shortDate'}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{myDate}}</td>
+                        <td>myDate | date:'dd/MM/YYYY  hh:ss'</td>
+                        <td>{{myDate | date:'dd/MM/yyyy hh:ss'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h2>Formatage Monétaire</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Format brut</th>
+                    <th>Filtre utilisé</th>
+                    <th>Résultat</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{myNumber}}</td>
+                        <td>myNumber | currency</td>
+                        <td>{{myNumber | currency}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{myNumber}}</td>
+                        <td>myNumber | currency:"$"</td>
+                        <td>{{myNumber | currency:"$"}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{myNumber}}</td>
+                        <td>myNumber | currency:"$":2</td>
+                        <td>{{myNumber | currency:"$":1}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h2>Pluralize</h2>
+
+            <ng-pluralize count="personCount"
+                          when="{'0': 'Personne ici.', 'one': 'Une personne présente.', 'other': '{} personnes présentes.'}">
+            </ng-pluralize>
+
+            <div class="form-group">
+                <label>Nombre de personne</label>
+                <input type="number" ng-model="personCount" class="form-control" />
+            </div>
+            <hr />
+            <h2>TD</h2>
+            <div class="form-group">
+                <label>Nombre de pomme</label>
+                <input type="number" ng-model="appelCount" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Prix de la pomme</label>
+                <input type="number" ng-model="appelPrice" class="form-control" />
+            </div>
+            <p class="bg-info">
+                Tom a acheté {{appelCount | number}}
+                <ng-pluralize count="appelCount" when="{'0': 'pomme', '1': 'pomme', 'other': 'pommes'}"></ng-pluralize>
+                le {{currentDate | date:'shortDate'}} pour la somme de {{appelPrice * appelCount | currency}}
+            </p>
+            <hr />
+        </div>
+    </div>
+</div>

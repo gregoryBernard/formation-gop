@@ -1,0 +1,18 @@
+input.ng-invalid.ng-dirty,
+input.ng-invalid.ng-touched {
+	border: 2px solid red;
+}
+
+input.ng-valid.ng-dirty {
+	border: 2px solid green;
+}
+
+input.custom-valid.ng-dirty {
+	background-color: green;
+	color: white;
+}
+
+input.custom-invalid.ng-dirty {
+	background-color: red;
+	color: white;
+}

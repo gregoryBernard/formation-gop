@@ -1,0 +1,18 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container" ng-controller="RouterCtrl">
+
+  <h1>Router</h1>
+
+  <div class="row">
+    <div class="col-lg-12" ng-controller="BindingCtrl">
+
+      <h2 class="page-header">Paramètres de ma route</h2>
+      <pre>{{params | json}}</pre>
+
+      <h2 class="page-header">Mon objet route</h2>
+      <pre>{{currentRoute | json}}</pre>
+
+    </div>
+  </div>
+</div>

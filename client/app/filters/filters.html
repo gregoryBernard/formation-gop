@@ -1,0 +1,68 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container" ng-controller="filtersController as main">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Fruit basket</h4>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Yums</th>
+                        </tr>
+                        </thead>
+                        <tr ng-repeat="fruit in main.fruits | limitTo : main.limit">
+                            <td ng-bind="fruit.name"></td>
+                            <td ng-bind="fruit.price | currency"></td>
+                            <td ng-bind="'yum' | doubler : fruit.yums"></td>
+                        </tr>
+                    </table>
+                    <div class="alert alert-warning" ng-show="main.limit < main.fruits.length">
+                        Only showing {{main.limit}} fruits of {{main.fruits.length}}!
+                        <a ng-click="main.limit = main.fruits.length">Show more...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-controller="PaginationFilterCtl as main">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Data grid with pagination</h4>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Summary</th>
+                            <th>Price</th>
+                        </tr>
+                        </thead>
+                        <tr ng-repeat="item in main.itemList | paginate:main.currentPage:main.numberPerPage">
+                            <td ng-bind="item.name"></td>
+                            <td ng-bind="item.summary"></td>
+                            <td ng-bind="item.price | currency"></td>
+                        </tr>
+                    </table>
+                    <div class="pager">
+                        <a class="btn btn-default"
+                           ng-repeat="page in main.pages"
+                           ng-click="main.currentPage = page"
+                           ng-class="{'btn-primary': main.currentPage == page}">
+                            {{page}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

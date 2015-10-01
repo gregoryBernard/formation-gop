@@ -1,0 +1,27 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container" ng-controller="formsController as main">
+    <form name="form" novalidate>
+        <div class="alert alert-danger" ng-show="form.$submitted && form.$invalid">
+            The form is not valid
+        </div>
+        <div class="form-group">
+            <label for="userName">Username</label>
+            <input class="form-control" type="text" id="userName" name="userName" ng-model="user.name" required>
+        </div>
+        <div class="alert alert-danger" ng-show="form.$submitted && form.userName.$error.required">
+            The username is required
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input class="form-control" type="number" id="age" name="age" ng-model="user.age">
+        </div>
+        <div class="alert alert-danger" ng-show="form.$submitted && form.age.$error.number">
+            Age must be a number
+        </div>
+        <div class="form-group">
+            <label for="trigram">Trigram (xxx)</label>
+            <input class="form-control" type="text" id="trigram" name="trigram" ng-model="user.trigram" ng-minlength="3">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>

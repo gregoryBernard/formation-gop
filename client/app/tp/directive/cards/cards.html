@@ -1,0 +1,11 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container" ng-controller="cardsController as main" ng-cloak>
+    <h1>Pinterest cards</h1>
+    <pre>{{main.cards | json}}</pre>
+    <pinterest data="main.cards">
+        <div class="pinterest-card">
+            <h2 ng-bind="card.title"></h2>
+            <p ng-bind="card.text"></p>
+        </div>
+    </pinterest>
+</div>

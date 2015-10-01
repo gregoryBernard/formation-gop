@@ -1,0 +1,71 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container" ng-cloak>
+
+  <h1>Premiers pas</h1>
+
+  <div class="row">
+    <div class="col-lg-12" ng-controller="BindingCtrl">
+
+      <h2 class="page-header">Data Binding</h2>
+
+      <h3>My name is {{myName}}</h3>
+      <a ng-click="myName = herName">But can change if I want ;)</a>
+
+    </div>
+    <hr />
+    <div class="col-lg-12" ng-controller="OtherBindingCtrl">
+
+      <h2 class="page-header">Autre type de binding</h2>
+
+      <span data-ng-bind="myName"></span><br />
+      <span ng-bind="myName"></span><br />
+      <span ng-bind-html="myHtmlText"></span><br />
+      <span ng-bind-template="{{myName}} knows well {{herName}}"></span><br />
+
+    </div>
+    <hr />
+    <div class="col-lg-12" ng-controller="ModelsCtrl">
+
+      <h2 class="page-header">Modèles</h2>
+
+      <span ng-init="myFavoriteColor = 'blue'"></span><br />
+
+      <input class="form-control" ng-model="myFavoriteFruit" /><br />
+
+      <pre>{{ [myFavoriteColor, myFavoriteFruit] | json }}</pre>
+
+    </div>
+    <hr />
+    <div class="col-lg-12" ng-controller="ListsCtrl">
+
+      <h2 class="page-header">Listes</h2>
+
+      <ul ng-repeat="thing in awesomeThings">
+        <li><a tooltip="{{thing.info}}">{{thing.name}}</a></li>
+      </ul>
+
+      <h2>My name is {{user.name}}</h2>
+
+      <ul ng-repeat="name in names">
+        <li><a ng-click="main.userName = name">{{name}}</a></li>
+      </ul>
+
+    </div>
+
+    <div class="col-lg-12" ng-controller="FiltersCtrl">
+
+      <h2 class="page-header">Filtres</h2>
+
+      <div class="form-group">
+        <label>Rechercher</label>
+        <input class="form-control" ng-model="nameFilter" />
+      </div>
+
+      <ul ng-repeat="name in names | filter:nameFilter | orderBy:name:true">
+        <li>{{name}}</li>
+      </ul>
+
+    </div>
+  </div>
+</div>

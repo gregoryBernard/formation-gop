@@ -1,0 +1,92 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+
+        <div class="col-xs-12" ng-controller="contactController">
+
+            <h2 class="page-header">My agenda</h2>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Contact list</h3>
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <input type="button" class="btn btn-primary" ng-click="addContact()" value="Add contact" />
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone number</th>
+                            <th>Address</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="contact in contacts">
+                                <td>{{contact.type}}</td>
+                                <td>{{contact.name}}</td>
+                                <td>{{contact.email}}</td>
+                                <td>{{contact.phone}}</td>
+                                <td>{{contact.address}}</td>
+                                <td><a ng-click="more(contact)"><i class="glyphicon glyphicon-eye-open"></i></a></td>
+                                <td><a ng-click="edit(contact)"><i class="glyphicon glyphicon-edit"></i></a></td>
+                                <td><a ng-click="remove(contact)"><i class="glyphicon glyphicon-remove"></i></a></td>
+                                <td><a ng-click="export(contact)"><i class="glyphicon glyphicon-export"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-12" ng-show="contactDetail">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3>{{contactDetail.name}} details</h3>
+                        </div>
+                        <div class="panel-body">
+                            <pre>{{contactDetail | json}}</pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" ng-show="exportMessage">
+                    <p class="alert alert-success">Contact exported to {{exportMessage}}</p>
+                </div>
+                <div class="col-sm-12" ng-show="showForm">
+                    <h3>{{contact.id ? 'Edit' : 'Add'}} a contact</h3>
+                    <form name="contactForm" ng-submit="saveContact()" novalidate>
+                        <div class="alert alert-danger" ng-show="contactForm.$submitted && contactForm.$invalid">
+                            Form contain errors and cannot be save !
+                        </div>
+                        <div class="form-group">
+                            <label>Contact type</label>
+                            <select class="form-control" ng-required="true" ng-model="contact.type" ng-options="item as item for item in contactTypes"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input ng-model="contact.name" ng-required="true" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>email</label>
+                            <input type="email" ng-model="contact.email" ng-required="true" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Phone number</label>
+                            <input ng-model="contact.phone" ng-required="true" ng-pattern="/^\+{0,1}[\d\s]+$/" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input ng-model="contact.address" ng-required="true" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Save" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

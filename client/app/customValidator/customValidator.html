@@ -1,0 +1,16 @@
+<div class="container">
+	<div ng-controller="customValidatorCtrl">
+		<form name="test" ng-submit="">
+			<p>
+				This should be equal to "ploum"
+			</p>
+			<input type="text" name="simpleProperty" ng-model="simpleProperty" custom-validator required>
+			<div ng-show="test.simpleProperty.$invalid" class="alert alert-danger">
+				Mon message d'erreur
+			</div>
+			<input type="text" name="simpleStringProperty" ng-model="simpleStringProperty" custom-string-validator="ploum">
+
+			<input type="button" value="save" ng-click="save()" ng-class="" />
+		</form>
+	</div>
+</div>

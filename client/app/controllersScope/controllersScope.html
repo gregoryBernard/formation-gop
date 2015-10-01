@@ -1,0 +1,195 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container" ng-cloak>
+
+    <h1>Controllers and Scopes</h1>
+
+    <h2>Prototypal inheritance</h2>
+
+    <div ng-controller="ControllersScopeSimpleCtrl">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4>This is the parent controller</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p ng-bind="simpleProperty" class="lead"></p>
+                        <!-- Child controller -->
+                        <div ng-controller="ControllersScopeSimpleChildCtrl">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4>This is the child controller, that inherits the property</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <p ng-bind="simpleProperty" class="lead"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <h2>Scope mutation</h2>
+
+    <div ng-controller="ControllersScopeMutationCtrl">
+        <p ng-show="display === true" class="lead">Mutation!</p>
+        <button class="btn btn-primary" ng-click="display = !display">Display!</button>
+    </div>
+
+    <hr/>
+
+    <h2>Change the parent value with $scope.$parent</h2>
+
+    <div ng-controller="ControllersScopeCtrl">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4>This is the parent controller</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p ng-bind="someProperty" class="lead"></p>
+                        <button class="btn btn-default" ng-click="changeSomeProperty()">Change the value</button>
+                        <p></p>
+                        <!-- Child controller -->
+                        <div ng-controller="ControllersScopeChildCtrl">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4>This is the child controller</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <p ng-bind="someChildProperty" class="lead"></p>
+                                    <button class="btn btn-default" ng-click="changeSomeProperty()">Change the value
+                                        from the child scope
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-default" ng-click="reinitSomeProperty()">Re-init</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <h2>Controller as syntax</h2>
+
+    <div ng-controller="ControllersScopeCtrlAs as main">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4>This is the main controller</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p ng-bind="main.someProperty" class="lead"></p>
+                        <button class="btn btn-default" ng-click="main.changeSomeProperty()">Change the value</button>
+                        <p></p>
+                        <!-- Child controller -->
+                        <div ng-controller="ControllersScopeChildCtrlAs as child">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4>This is a child controller</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <p ng-bind="main.someProperty" class="lead"></p>
+                                    <button class="btn btn-default" ng-click="main.changeSomeProperty()">Change the
+                                        value from the child scope
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-default" ng-click="main.reinitSomeProperty()">Re-init</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <h2>Handle events with $apply</h2>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Click event directive</h4>
+                </div>
+                <div class="panel-body">
+                    <div click-event-element></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <h2>Handle scope events with $broadcast / $emit</h2>
+
+    <div ng-controller="ControllersScopeEventSenderCtrl as sender">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4>This is the parent controller</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p ng-bind="sender.message"></p>
+                        <button class="btn btn-default" ng-click="sender.broadcastMessage()">Broadcast a message
+                        </button>
+                        <p></p>
+                        <!-- Child controller -->
+                        <div ng-controller="ControllersScopeEventReceiverCtrl as receiver">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4>This is the child controller</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <p ng-bind="receiver.message"></p>
+                                    <button class="btn btn-default" ng-click="receiver.emitMessage()">Emit a message
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-default" ng-click="sender.reset()">Re-init</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <h2>Controllers and scopes TD</h2>
+
+    <div ng-controller="ControllersScopeTdCtlDistant2">
+        <div class="row">
+            <div class="col-xs-12" ng-show="greetingName">
+                <p class="alert alert-info">Hi {{greetingName}} !</p>
+                <p class="info">You see, I'm somwhere in app and I'm aware of events !</p>
+            </div>
+        </div>
+    </div>
+
+    <div ng-controller="ControllersScopeTdCtlDistant1">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label>My name</label>
+                    <input type="text" class="form-control" ng-model="name" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+    <br />
+</div>
